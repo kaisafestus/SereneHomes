@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { BRAND } from "@/constants/brand";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -31,13 +31,16 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav
+    <motion.nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
         isScrolled
           ? "bg-background/80 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
+      initial={false}
+      animate={isScrolled ? { y: -2 } : { y: 0 }}
+      transition={{ duration: 0.25 }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex flex-col">
@@ -60,10 +63,13 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link 
-            href="https://wa.me/254725896947" 
+          <Link
+            href="https://wa.me/254725896947"
             target="_blank"
-            className={cn(buttonVariants({ variant: "default" }), "bg-primary hover:bg-primary/90 h-10 px-6")}
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "bg-primary hover:bg-primary/90 h-10 px-6",
+            )}
           >
             Book Now
           </Link>
@@ -79,30 +85,41 @@ export function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b animate-in slide-in-from-top duration-300">
-          <div className="flex flex-col p-6 space-y-4">
-            {NAV_LINKS.map((link) => (
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-background border-b"
+          >
+            <div className="flex flex-col p-6 space-y-4">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
               <Link
-                key={link.name}
-                href={link.href}
-                className="text-lg font-medium"
+                href="https://wa.me/254725896947"
+                target="_blank"
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "w-full bg-primary py-6 text-lg h-auto",
+                )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.name}
+                Book Now
               </Link>
-            ))}
-            <Link 
-              href="https://wa.me/254725896947" 
-              target="_blank"
-              className={cn(buttonVariants({ variant: "default" }), "w-full bg-primary py-6 text-lg h-auto")}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Book Now
-            </Link>
-          </div>
-        </div>
-      )}
-    </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }
