@@ -87,7 +87,7 @@ export function Hero() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-white/50"
       >
         <div className="w-[1px] h-12 bg-gradient-to-b from-white/50 to-transparent" />
       </motion.div>

@@ -105,7 +105,7 @@ export function PropertyShowcase() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-10 left-10 right-10">
+                    <div className="absolute bottom-6 left-4 right-4 md:bottom-10 md:left-10 md:right-10">
                       <h3 className="text-white font-heading text-3xl font-bold mb-2">
                         {room.label}
                       </h3>
