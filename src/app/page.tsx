@@ -15,9 +15,9 @@ import { DirectBookingAdvantage } from "@/components/sections/DirectBookingAdvan
 
 export default function Home() {
   return (
-    <main className="relative flex-1">
+    <main className="relative flex-1 pt-20 md:pt-24">
       <Navbar />
-      
+
       <Hero />
       <TrustBar />
       <WhyChooseUs />
@@ -29,7 +29,7 @@ export default function Home() {
       <Reviews />
       <FAQ />
       <DirectBookingAdvantage />
-      
+
       <Footer />
       <WhatsAppFloating />
     </main>

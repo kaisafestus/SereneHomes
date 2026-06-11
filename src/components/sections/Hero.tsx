@@ -26,7 +26,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 px-6 text-center">
+      <div className="max-w-7xl mx-auto relative z-10 px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export function Hero() {
           </p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -65,7 +65,7 @@ export function Hero() {
               target="_blank"
               className={cn(
                 buttonVariants({ variant: "default" }),
-                "bg-accent hover:bg-accent/90 text-primary font-bold px-8 h-14 rounded-full text-lg min-w-[200px]",
+                "bg-accent hover:bg-accent/90 text-primary font-bold px-6 sm:px-8 h-12 sm:h-14 rounded-full text-lg w-full sm:w-auto min-w-0",
               )}
             >
               Book Your Stay
@@ -74,7 +74,7 @@ export function Hero() {
               href="#showcase"
               className={cn(
                 buttonVariants({ variant: "outline" }),
-                "border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-md font-bold px-8 h-14 rounded-full text-lg min-w-[200px]",
+                "border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-md font-bold px-6 sm:px-8 h-12 sm:h-14 rounded-full text-lg w-full sm:w-auto min-w-0",
               )}
             >
               View Apartment

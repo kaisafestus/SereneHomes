@@ -94,7 +94,7 @@ export function Navbar() {
             transition={{ duration: 0.22 }}
             className="md:hidden absolute top-full left-0 right-0 bg-background border-b"
           >
-            <div className="flex flex-col p-6 space-y-4">
+            <div className="flex flex-col p-4 space-y-3">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.name}
@@ -110,7 +110,7 @@ export function Navbar() {
                 target="_blank"
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "w-full bg-primary py-6 text-lg h-auto",
+                  "w-full bg-primary py-3 text-base h-auto rounded-full",
                 )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
