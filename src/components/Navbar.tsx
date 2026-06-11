@@ -33,7 +33,7 @@ export function Navbar() {
   return (
     <motion.nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
         isScrolled
           ? "bg-background/80 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent",
@@ -42,9 +42,9 @@ export function Navbar() {
       animate={isScrolled ? { y: -2 } : { y: 0 }}
       transition={{ duration: 0.25 }}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex flex-col">
-          <span className="font-heading text-xl md:text-2xl font-bold tracking-tight text-primary">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 w-full min-w-0">
+        <Link href="/" className="flex flex-col flex-shrink-0">
+          <span className="font-heading text-lg md:text-xl font-bold tracking-tight text-primary">
             SERENE HOMES
           </span>
           <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-accent">
@@ -53,35 +53,43 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
-          {NAV_LINKS.map((link) => (
+        <div className="hidden md:flex items-center space-x-6 flex-1 justify-center min-w-0">
+          <div className="flex items-center space-x-6 overflow-hidden">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium hover:text-accent transition-colors truncate"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden md:block">
             <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium hover:text-accent transition-colors"
+              href="https://wa.me/254725896947"
+              target="_blank"
+              className={cn(
+                buttonVariants({ variant: "default" }),
+                "bg-primary hover:bg-primary/90 h-9 px-4 rounded-md text-sm",
+              )}
             >
-              {link.name}
+              Book Now
             </Link>
-          ))}
-          <Link
-            href="https://wa.me/254725896947"
-            target="_blank"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "bg-primary hover:bg-primary/90 h-10 px-6",
-            )}
-          >
-            Book Now
-          </Link>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center ml-2">
+          <button
+            className="p-2 z-50"
+            aria-label="Toggle menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
